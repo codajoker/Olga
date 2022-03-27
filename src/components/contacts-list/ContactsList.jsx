@@ -1,18 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
+
 import { Contact } from "..";
 import { Contacts } from "./ContactList.styled";
-export const ContactsList = ({ contacts, onDeleteContact }) => {
+
+export const ContactsList = ({ contacts }) => {
   return (
     <Contacts>
       {contacts.map(({ name, id, number }) => (
-        <Contact
-          key={id}
-          name={name}
-          number={number}
-          id={id}
-          onDeleteContact={onDeleteContact}
-        ></Contact>
+        <Contact key={id} name={name} number={number} id={id}></Contact>
       ))}
     </Contacts>
   );

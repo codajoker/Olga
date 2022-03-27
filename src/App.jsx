@@ -1,28 +1,15 @@
-import React, { useState, useEffect, useRef } from "react";
-import { Section, ContactsList, ContactForm, Filter } from "./components/index";
-import { nanoid } from "nanoid";
+import { useSelector, useDispatch } from "react-redux";
 
-const LOCAL_KEY = "contacts";
+import { addItems } from "./redux/reducers";
+import { Section, ContactsList, ContactForm, Filter } from "./components/index";
 
 export function App() {
-  const isMounted = useRef(false);
-  const generateId = nanoid();
-
-  const [filter, setFilter] = useState("");
-  const [contacts, setContacts] = useState(() => {
-    return JSON.parse(localStorage.getItem(LOCAL_KEY)) ?? [];
-  });
-
-  useEffect(() => {
-    if (isMounted.current) {
-      localStorage.setItem(LOCAL_KEY, JSON.stringify(contacts));
-    }
-
-    isMounted.current = true;
-  }, [contacts]);
+  const contactsValue = useSelector((state) => state.contacts.items);
+  const filterValue = useSelector((state) => state.contacts.filter);
+  const dispatch = useDispatch();
 
   const addContact = (name, number) => {
-    const checkContact = contacts.find(
+    const checkContact = contactsValue.find(
       (contact) => contact.name.toLowerCase() === name.toLowerCase()
     );
 
@@ -31,37 +18,21 @@ export function App() {
       return;
     }
 
-    setContacts((prevState) => [
-      { name, id: generateId, number },
-      ...prevState,
-    ]);
+    dispatch(addItems({ name, number }));
   };
 
-  const filterContacts = (e) => setFilter(e.target.value);
-
-  const deleteContact = (id) => {
-    setContacts((prevState) =>
-      prevState.filter((contact) => contact.id !== id)
-    );
-  };
-
-  const findedContactByFilter = contacts.filter((contact) =>
-    contact.name.toLowerCase().includes(filter.toLowerCase())
+  const findedContactByFilter = contactsValue.filter((contact) =>
+    contact.name.toLowerCase().includes(filterValue.toLowerCase())
   );
 
   return (
     <>
-      <Section title={"Phonebook"}>
+      <Section title="Phonebook">
         <ContactForm onSabmit={addContact}></ContactForm>
       </Section>
       <Section title="Contacts">
-        <Filter onChange={filterContacts} filerValue={filter}>
-          Find contacts by name
-        </Filter>
-        <ContactsList
-          contacts={findedContactByFilter}
-          onDeleteContact={deleteContact}
-        ></ContactsList>
+        <Filter>Find contacts by name</Filter>
+        <ContactsList contacts={findedContactByFilter}></ContactsList>
       </Section>
     </>
   );

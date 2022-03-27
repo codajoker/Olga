@@ -1,7 +1,13 @@
 import React from "react";
-import PropTypes from "prop-types";
+import { useDispatch, useSelector } from "react-redux";
+
+import { addFilter } from "../../redux/reducers";
 import { FilterWrapper } from "./Filter.styled";
-export const Filter = ({ children, onChange, filerValue }) => {
+
+export const Filter = ({ children }) => {
+  const dispatch = useDispatch();
+  const filterValue = useSelector((state) => state.contacts.filter);
+
   return (
     <FilterWrapper>
       <label htmlFor="filter">{children}</label>
@@ -9,12 +15,9 @@ export const Filter = ({ children, onChange, filerValue }) => {
         type="text"
         name="filter"
         id="filter"
-        onChange={onChange}
-        value={filerValue}
+        onChange={(e) => dispatch(addFilter(e.target.value))}
+        value={filterValue}
       ></input>
     </FilterWrapper>
   );
-};
-Filter.propTypes = {
-  onChange: PropTypes.func.isRequired,
 };

@@ -1,22 +1,20 @@
 import React from "react";
-import { PageButton } from "./Button.styled";
+import { useDispatch } from "react-redux";
 import PropTypes from "prop-types";
-export const Button = ({
-  type = "button",
-  children,
-  contactId,
-  onDeleteContact,
-}) => {
-  return onDeleteContact ? (
-    <PageButton type={type} onClick={() => onDeleteContact(contactId)}>
+
+import { PageButton } from "./Button.styled";
+import { removeContact } from "../../redux/reducers";
+
+export const Button = ({ type = "button", children, id }) => {
+  const dispatch = useDispatch();
+
+  return (
+    <PageButton type={type} onClick={() => dispatch(removeContact(id))}>
       {children}
     </PageButton>
-  ) : (
-    <PageButton type={type}>{children}</PageButton>
   );
 };
 Button.propTypes = {
   type: PropTypes.string,
-  contactId: PropTypes.string,
-  onDeleteContact: PropTypes.func,
+  id: PropTypes.string,
 };
