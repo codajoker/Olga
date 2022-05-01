@@ -1,8 +1,8 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react';
+import PropTypes from 'prop-types';
 
-import { Contact } from "..";
-import { Contacts } from "./ContactList.styled";
+import { Contact } from '..';
+import { Contacts } from './ContactList.styled';
 
 export const ContactsList = ({ contacts }) => {
   return (

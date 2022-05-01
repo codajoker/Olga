@@ -1,7 +1,7 @@
-import React from "react";
-import { Button } from "../..";
-import { ContactItem } from "./Contact.styled";
-import PropTypes from "prop-types";
+import React from 'react';
+import { Button } from '../..';
+import { ContactItem } from './Contact.styled';
+import PropTypes from 'prop-types';
 export const Contact = ({ id, name, number }) => {
   return (
     <ContactItem>

@@ -1,22 +1,22 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
-import { Button } from "..";
-import { Form, Input } from "./ContactForm.styled";
-import PropTypes from "prop-types";
+import { Form, Input } from './ContactForm.styled';
+import PropTypes from 'prop-types';
+import { PageButton } from 'components/button/Button.styled';
 
 export function ContactForm({ onSabmit }) {
-  const [name, setName] = useState("");
-  const [number, setNumber] = useState("");
+  const [name, setName] = useState('');
+  const [number, setNumber] = useState('');
 
-  const handleSubmit = (event) => {
+  const handleSubmit = event => {
     event.preventDefault();
     onSabmit(name, number);
     reset();
   };
 
   const reset = () => {
-    setNumber("");
-    setName("");
+    setNumber('');
+    setName('');
   };
 
   return (
@@ -29,7 +29,7 @@ export function ContactForm({ onSabmit }) {
         title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
         required
         id="name"
-        onChange={(e) => setName(e.target.value)}
+        onChange={e => setName(e.target.value)}
         value={name}
       />
 
@@ -41,10 +41,10 @@ export function ContactForm({ onSabmit }) {
         title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
         required
         id="number"
-        onChange={(e) => setNumber(e.target.value)}
+        onChange={e => setNumber(e.target.value)}
         value={number}
       />
-      <Button type="submit">Add contact</Button>
+      <PageButton type="submit">Add contact</PageButton>
     </Form>
   );
 }

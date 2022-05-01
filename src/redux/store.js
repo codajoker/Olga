@@ -1,35 +1,23 @@
-import { configureStore, combineReducers } from "@reduxjs/toolkit";
-import logger from "redux-logger";
+import { configureStore } from '@reduxjs/toolkit';
+import logger from 'redux-logger';
 
 import {
-  persistStore,
-  persistReducer,
   FLUSH,
   REHYDRATE,
   PAUSE,
   PERSIST,
   PURGE,
   REGISTER,
-} from "redux-persist";
-import storage from "redux-persist/lib/storage";
+} from 'redux-persist';
 
-import contactsSlice from "./reducers";
-
-const rootReducer = combineReducers({
-  contacts: contactsSlice,
-});
-
-const persistConfig = {
-  key: "root",
-  storage,
-};
-
-const persistedReducer = persistReducer(persistConfig, rootReducer);
+import contactsReducers from './contacts/contactsReducer';
 
 const store = configureStore({
-  reducer: persistedReducer,
+  reducer: {
+    contacts: contactsReducers,
+  },
 
-  middleware: (getDefaultMiddleware) => [
+  middleware: getDefaultMiddleware => [
     ...getDefaultMiddleware({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
@@ -39,5 +27,4 @@ const store = configureStore({
   ],
 });
 
-export const persistor = persistStore(store);
 export default store;

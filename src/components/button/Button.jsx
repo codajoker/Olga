@@ -1,15 +1,15 @@
-import React from "react";
-import { useDispatch } from "react-redux";
-import PropTypes from "prop-types";
+import React from 'react';
+import { useDispatch } from 'react-redux';
+import PropTypes from 'prop-types';
 
-import { PageButton } from "./Button.styled";
-import { removeContact } from "../../redux/reducers";
+import { PageButton } from './Button.styled';
+import { deleteContact } from '../../redux/contacts/contactsOperations';
 
-export const Button = ({ type = "button", children, id }) => {
+export const Button = ({ type = 'button', children, id }) => {
   const dispatch = useDispatch();
 
   return (
-    <PageButton type={type} onClick={() => dispatch(removeContact(id))}>
+    <PageButton type={type} onClick={() => dispatch(deleteContact(id))}>
       {children}
     </PageButton>
   );

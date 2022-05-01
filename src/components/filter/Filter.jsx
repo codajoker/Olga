@@ -1,12 +1,12 @@
-import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { addFilter } from "../../redux/reducers";
-import { FilterWrapper } from "./Filter.styled";
+import { addFilter } from '../../redux/contacts/contactsActions';
+import { FilterWrapper } from './Filter.styled';
 
 export const Filter = ({ children }) => {
   const dispatch = useDispatch();
-  const filterValue = useSelector((state) => state.contacts.filter);
+  const filterValue = useSelector(state => state.contacts.filter);
 
   return (
     <FilterWrapper>
@@ -15,7 +15,7 @@ export const Filter = ({ children }) => {
         type="text"
         name="filter"
         id="filter"
-        onChange={(e) => dispatch(addFilter(e.target.value))}
+        onChange={e => dispatch(addFilter(e.target.value))}
         value={filterValue}
       ></input>
     </FilterWrapper>
