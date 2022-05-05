@@ -1,4 +1,4 @@
-import { createAction } from '@reduxjs/toolkit';
+// import { createAction } from '@reduxjs/toolkit';
 
 // ванильный редакс
 
@@ -24,4 +24,4 @@ import { createAction } from '@reduxjs/toolkit';
 // export const addFilter = createAction('contacts/addFilter');
 
 // используем redux-thunk
-export const addFilter = createAction('contacts/addFilter');
+// export const addFilter = createAction('contacts/addFilter');
