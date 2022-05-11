@@ -49,8 +49,7 @@
 //   );
 // }
 
-// import { Navigate, Route, Routes } from 'react-router-dom';
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, Suspense, lazy } from 'react';
 
@@ -113,9 +112,8 @@ export function App() {
                 </PrivetRoute>
               }
             />
-            {/* 
+
             <Route path="*" element={<Navigate to="/" replace />} />
-             */}
           </Route>
         </Routes>
       </Suspense>
