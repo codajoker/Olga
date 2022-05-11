@@ -1,0 +1,1 @@
+{"version":3,"file":"static/js/708.682a596b.chunk.js","mappings":"wMAAe,SAASA,IACtB,OACE,wCACW,yDAAqC","sources":["views/HomeView.jsx"],"sourcesContent":["export default function HomeView() {\n  return (\n    <div>\n      HomeView <p>Welcome to the phone book app</p>{' '}\n    </div>\n  );\n}\n"],"names":["HomeView"],"sourceRoot":""}
