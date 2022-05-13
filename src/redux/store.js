@@ -19,7 +19,7 @@ import contactsReducers from './contacts/contactsReducer';
 const authPersistConfig = {
   key: 'auth',
   storage,
-  whitelist: ['token'],
+  // whitelist: ['token'],
 };
 
 const contactsPersistConfig = {
